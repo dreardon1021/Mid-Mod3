@@ -1,18 +1,20 @@
 import React from 'react';
 import './ReservationsContainer.css'
+import '../ReservationCard/ReservationCard'
+import ReservationCard from '../ReservationCard/ReservationCard';
 
 const ReservationsContainer = ({ reservations }) => {
   return(
     <section className="container">
       {reservations.map(reservation => {
-        return <article className="reservation-card" id={reservation.id}>
+        return <ReservationCard
           date={reservation.date}
           id={reservation.id}
           key={reservation.id}
           name={reservation.name}
           number={reservation.number}
           time={reservation.time}
-        </article>
+        />
       })}
     </section>
   )
