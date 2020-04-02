@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
-.App {
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
