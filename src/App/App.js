@@ -21,16 +21,34 @@ class App extends Component {
   addReservation = (newReservation) => {
     const updatedReservations = this.state.reservations.concat([newReservation])
     this.setState({reservations: updatedReservations})
+    fetch('http://localhost:3001/api/v1/reservations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newReservation)
+    })
+    .then(resonse => resonse.json())
+    .catch(err => console.error(err.message))
   }
 
-
+  deleteReservation = (id) => {
+    let updatedReservations = this.state.reservations.filter(reservation => reservation.id !== id)
+    console.log(updatedReservations)
+    this.setState({reservations: updatedReservations})
+    fetch('http://localhost:3001/api/v1/reservations/' + id, {
+      method: 'DELETE',
+    })
+    .then(resonse => resonse.json())
+    .catch(err => console.error(err.message))
+  }
 
   render() {
     return (
       <main>
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <Form addReservation={this.addReservation}/>
-        <ReservationsContainer reservations={this.state.reservations}/>
+        <ReservationsContainer reservations={this.state.reservations} deleteReservation={this.deleteReservation}/>
       </main>
     )
   }

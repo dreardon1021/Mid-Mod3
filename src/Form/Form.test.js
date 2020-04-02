@@ -61,7 +61,7 @@ describe('Form', () => {
         name: 'Dan',
         date: '2020-04-22',
         time: '6:00',
-        number: '2'
+        number: 2
       }
     )
   })

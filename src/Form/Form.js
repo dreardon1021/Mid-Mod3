@@ -22,7 +22,7 @@ class Form extends Component {
       name: this.state.name,
       date: this.state.date,
       time: this.state.time,
-      number: this.state.number
+      number: parseInt(this.state.number)
     }
     console.log(newReservation)
     this.props.addReservation(newReservation)

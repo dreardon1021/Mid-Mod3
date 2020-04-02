@@ -3,7 +3,7 @@ import './ReservationsContainer.css'
 import '../ReservationCard/ReservationCard'
 import ReservationCard from '../ReservationCard/ReservationCard';
 
-const ReservationsContainer = ({ reservations }) => {
+const ReservationsContainer = ({ reservations, deleteReservation }) => {
   return(
     <section data-testid="container" className="container">
       {reservations.map(reservation => {
@@ -14,6 +14,7 @@ const ReservationsContainer = ({ reservations }) => {
           name={reservation.name}
           number={reservation.number}
           time={reservation.time}
+          deleteReservation={deleteReservation}
         />
       })}
     </section>
