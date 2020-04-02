@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ReservationsContainer from '../ReservationsContainer/ReservationsContainer';
+import Form from '../Form/Form'
 
 class App extends Component {
   constructor() {
@@ -17,17 +18,20 @@ class App extends Component {
       .then(reservations => this.setState({reservations: reservations}))
   }
 
+  addReservation = (newReservation) => {
+    const updatedReservations = this.state.reservations.concat([newReservation])
+    this.setState({reservations: updatedReservations})
+  }
+
 
 
   render() {
     return (
       <main>
         <h1 className='app-title'>Turing Cafe Reservations</h1>
-        <div className='resy-form'>
-
-        </div>
+        <Form addReservation={this.addReservation}/>
         <ReservationsContainer reservations={this.state.reservations}/>
-      </main> 
+      </main>
     )
   }
 }
