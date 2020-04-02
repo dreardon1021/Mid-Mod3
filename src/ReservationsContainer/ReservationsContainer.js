@@ -5,7 +5,7 @@ import ReservationCard from '../ReservationCard/ReservationCard';
 
 const ReservationsContainer = ({ reservations }) => {
   return(
-    <section className="container">
+    <section data-testid="container" className="container">
       {reservations.map(reservation => {
         return <ReservationCard
           date={reservation.date}
