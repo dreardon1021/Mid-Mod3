@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ReservationsContainer from '../ReservationsContainer/ReservationsContainer';
 import Form from '../Form/Form'
+import { getReservations } from '../apiCalls'
 
 class App extends Component {
   constructor() {
@@ -13,9 +14,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/v1/reservations')
-      .then(response => response.json())
+    getReservations()
       .then(reservations => this.setState({reservations: reservations}))
+      .catch(error => console.error(error.message))
   }
 
   addReservation = (newReservation) => {
@@ -52,7 +53,7 @@ class App extends Component {
 
   sortReservations = () => {
     if(this.state.sortType === 'Early-Late') {
-      let sortedReservations = this.state.reservations.sort((reservationB, reservationA) => {
+      let sortedReservations = this.state.reservations.sort(( reservationB, reservationA) => {
         return reservationB.date- reservationA.date
       })
       this.setState({reservations: sortedReservations})
@@ -61,7 +62,6 @@ class App extends Component {
       let sortedReservations = this.state.reservations.sort((reservationA, reservationB) => {
         return reservationA.date - reservationB.date
       })
-      
       this.setState({reservations: sortedReservations})
   }
 }
